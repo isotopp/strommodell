@@ -13,4 +13,3 @@ dist/
 # Reproduzierbare, aber große lokale Eingänge und erzeugte Modellläufe.
 data/reference/
 data/metadata/
-results/

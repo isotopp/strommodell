@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "data": {
+    "year": 2024,
+    "source": "energy-charts",
+    "resolution": "15 minutes",
+    "power_path": "/Users/kris/PycharmProjects/strommodell/data/raw/energy-charts-public-power-de-2024.json",
+    "capacity_path": "/Users/kris/PycharmProjects/strommodell/data/raw/energy-charts-installed-power-de.json",
+    "capacity_rule": "mean of 31 December capacity in previous and data year"
+  },
+  "results": [
+    "0-iststand-2024.json",
+    "A-knapp.json",
+    "B-referenz.json",
+    "C-viel-ueberschuss.json"
+  ]
+}
