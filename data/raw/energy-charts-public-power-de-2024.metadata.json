@@ -1,0 +1,14 @@
+{
+  "source": "Fraunhofer ISE Energy-Charts public_power API",
+  "url": "https://api.energy-charts.info/public_power?country=de&start=2024-01-01&end=2024-12-31",
+  "retrieved_at_utc": "2026-08-27T09:10:37Z",
+  "country": "DE",
+  "year": 2024,
+  "timezone": "UTC (source timestamps); source period is 2024 in Europe/Berlin",
+  "resolution": "15 minutes",
+  "unit": "MW (power values; validated by integrating Load to 465.503 TWh)",
+  "sha256": "54d5e2e74bf980c4b4334aef3aeeb4dd2d39c7747795444b18bdd58c7e2385cd",
+  "samples": 35136,
+  "required_series": ["Load", "Solar", "Wind onshore", "Wind offshore"],
+  "normalization": "Aggregate four consecutive 15-minute MW values by arithmetic mean to hourly MW. Integrate MW over hours to energy."
+}
