@@ -1,0 +1,10 @@
+{
+  "source": "Fraunhofer ISE Energy-Charts installed_power API",
+  "url": "https://api.energy-charts.info/installed_power?country=de&start=2024-01-01&end=2024-01-02",
+  "retrieved_at_utc": "2026-08-27T09:23:17Z",
+  "country": "DE",
+  "resolution": "annual; capacity as at 31 December",
+  "unit": "GW, except Battery storage (capacity) in GWh",
+  "sha256": "4e61c5b7cbb0acd4deeb6bdd684a8e2850023c0ea19747d8b07724934f85c814",
+  "reference_capacity_rule": "For a data year y, use (capacity at 31 December y-1 + capacity at 31 December y) / 2."
+}
