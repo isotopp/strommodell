@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from strommodell import main
 from strommodell.reference import import_reference_json
 
 RAW_SNAPSHOT = (
@@ -55,3 +56,31 @@ def test_import_json_reproduces_raw_snapshot_and_metadata(tmp_path: Path) -> Non
         "Wind offshore",
     ]
     datetime.fromisoformat(metadata["retrieved_at_utc"])
+
+
+def test_download_command_writes_fixture_response(tmp_path: Path) -> None:
+    expected_url = (
+        "https://api.energy-charts.info/public_power?country=de&"
+        "start=2024-01-01&end=2024-12-31"
+    )
+
+    def fixture_fetcher(url: str) -> bytes:
+        assert url == expected_url
+        return RAW_SNAPSHOT.read_bytes()
+
+    main(
+        [
+            "download",
+            "--year",
+            "2024",
+            "--source",
+            "energy-charts",
+            "--output",
+            str(tmp_path),
+        ],
+        fetcher=fixture_fetcher,
+    )
+
+    downloaded = tmp_path / RAW_SNAPSHOT.name
+    assert downloaded.read_bytes() == RAW_SNAPSHOT.read_bytes()
+    assert downloaded.with_suffix(".metadata.json").is_file()
