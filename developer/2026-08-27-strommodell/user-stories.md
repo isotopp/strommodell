@@ -220,9 +220,17 @@ uv run strommodell run scenarios/2024.yaml --years 2015:2024 --output results/mu
 
 Ein Test mit zwei Mini-Jahren erwartet, dass das Jahr mit der höheren Gasleistung als kritisches Jahr berichtet wird.
 
-## Noch vor Story 0 zu entscheiden
+## Festgelegt vor Story 0
 
-- Soll das Package als Unterverzeichnis dieses Blog-Repositories oder in einem separaten, leeren Git-Repository entstehen?
-- Sollen zunächst Stunden- oder Viertelstundenwerte verwendet werden? Viertelstundenwerte sind genauer für Batterie-Leistung; Stundenwerte sind für den ersten Tracer Bullet einfacher.
-- Welche Datenquelle liefert neben Erzeugung auch eine zeitlich passende Referenzleistung? Falls Energy-Charts nur Jahresendwerte liefert, müssen wir entweder eine Kapazitätszeitreihe ergänzen oder einen festen Referenzbestand mit klarer Einschränkung verwenden.
-- Soll Gas im ersten Modell als Erdgas mit elektrischem Wirkungsgrad oder nur als elektrische Restarbeit ausgewiesen werden? Für die Kapazitätsfrage genügt zunächst die elektrische Restarbeit.
+- Das Package liegt im separaten, leeren Git-Repository `strommodell`.
+- Viertelstundenwerte sind die kanonische Modellauflösung; stündliche Werte
+  werden nur als abgeleitete Ansicht erzeugt.
+- Energy-Charts liefert die Leistung zum Jahresende. Für ein Datenjahr wird
+  daher der Mittelwert aus Bestand am Jahresende des Vorjahres und des
+  Datenjahres als Referenzleistung verwendet.
+- PV-Leistungen sind DC/GWp; Windleistungen sind GW.
+- Batterien starten jeden Jahreslauf bei 50 % ihres Energieinhalts.
+- Gas wird ausschließlich als elektrische Restarbeit und -leistung gerechnet.
+  Es gibt im ersten Modell keinen Brennstoff- oder Wirkungsgradpfad.
+- Die vollständige Begründung, Zahlenwerte und Fehlerregeln stehen in
+  `developer/2026-08-27-strommodell/model-decisions.md`.

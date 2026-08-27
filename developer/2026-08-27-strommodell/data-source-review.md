@@ -48,11 +48,10 @@ generation` sind nützliche Plausibilitätsreihen, aber kein Recheninput.
 
 ## Offener Datenpunkt: Referenzleistung
 
-Der ebenfalls getestete Endpunkt
+Der ebenfalls getestete und als Schnappschuss versionierte Endpunkt
 `https://api.energy-charts.info/installed_power?country=de&start=2024-01-01&end=2024-01-02`
 liefert installierte Leistung lediglich jährlich (Stichtag 31.12.), nicht pro
-Viertelstunde. Er eignet sich deshalb für Szenario 0 am Jahresende, aber nicht
-für die in Story 3 geforderte zeitlich passende Referenzleistung. Dafür muss
-eine zweite Quelle mit Inbetriebnahme-/Monatsdaten ergänzt oder die Story für
-den ersten Lauf ausdrücklich auf einen festen Referenzbestand einschränkt
-werden.
+Viertelstunde. Deshalb wird die Referenzleistung verbindlich als arithmetisches
+Mittel aus Jahresende des Vorjahres und Jahresende des Datenjahres verwendet.
+Die konkreten Werte und die übrigen Modellfestlegungen stehen in
+`developer/2026-08-27-strommodell/model-decisions.md`.

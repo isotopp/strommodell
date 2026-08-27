@@ -5,7 +5,7 @@ Stromzeitreihen und Szenarien eines elektrifizierten Deutschlands.
 
 ## Entwicklungsablauf
 
-- Implementiere die Stories in `developer/user-stories.md` als vertikale
+- Implementiere die Stories im jeweiligen Epic-Verzeichnis als vertikale
   TDD-Slices: ein Verhaltenstest über die öffentliche API oder CLI, dann die
   kleinste passende Implementierung.
 - Tests prüfen keine privaten Hilfsfunktionen. Echte Netzabrufe bleiben

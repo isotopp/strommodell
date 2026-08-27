@@ -2,7 +2,7 @@
 
 Reproduzierbares Modell für historische deutsche Stromzeitreihen und Szenarien
 eines elektrifizierten Deutschlands. Die fachlichen Schritte stehen in
-[`developer/user-stories.md`](developer/user-stories.md).
+[`developer/2026-08-27-strommodell/user-stories.md`](developer/2026-08-27-strommodell/user-stories.md).
 
 ```bash
 uv run strommodell --help
