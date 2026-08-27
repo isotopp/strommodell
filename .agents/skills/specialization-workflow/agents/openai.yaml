@@ -1,0 +1,4 @@
+interface:
+  display_name: "Specialization Workflow"
+  short_description: "Plan epic work with stories, tickets, TDD, and commits."
+  default_prompt: "Use $specialization-workflow to plan and implement the current epic."
