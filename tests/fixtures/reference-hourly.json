@@ -1,0 +1,9 @@
+{
+  "unix_seconds": [1704067200, 1704070800],
+  "production_types": [
+    {"name": "Load", "data": [1000, 1000]},
+    {"name": "Solar", "data": [0, 0]},
+    {"name": "Wind onshore", "data": [0, 0]},
+    {"name": "Wind offshore", "data": [0, 0]}
+  ]
+}
