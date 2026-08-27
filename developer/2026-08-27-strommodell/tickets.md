@@ -21,22 +21,26 @@ help entries already exist. Keep the CLI behavior test as the regression gate.
 **Public behavior test:** `strommodell --help` exits successfully and lists
 `run`.
 
-## T-002 — Define the public reference-data import boundary
+## T-002 — Reproduce the checked-in Energy-Charts raw snapshot
 
 **Story:** 1
 **Depends on:** T-001
 
-Create one public local import API that turns a small, checked-in fixture into
-raw reference data and provenance metadata. The fixture must represent the
-four required Energy-Charts series and UTC timestamps without calling the
-network. It must preserve the original source format name in metadata.
+Create one public local import API that copies the existing
+`data/raw/energy-charts-public-power-de-2024.json` snapshot into a caller-
+selected directory and regenerates its provenance metadata. The canonical
+Energy-Charts JSON itself is the golden fixture: it contains the shared UTC
+timestamp axis and the four required series without any network call. The
+metadata must retain the JSON source format, URL, year, timezone, resolution,
+units, sample count, required series and SHA-256.
 
-**Public behavior test:** import the fixture into a temporary output directory;
-assert that raw data and metadata exist, and that metadata has source URL,
-retrieval time, year, timezone, resolution, units and SHA-256.
+**Public behavior test:** import the checked-in snapshot into a temporary output
+directory; assert byte-identical raw JSON and metadata with a valid UTC
+retrieval timestamp, source URL, year, timezone, resolution, units and digest.
 
-**Done when:** malformed fixture input produces an understandable public data
-error; the default test suite has no network dependency.
+**Done when:** malformed or incomplete Energy-Charts JSON produces an
+understandable public data error; the default test suite has no network
+dependency.
 
 ## T-003 — Implement the Energy-Charts download command
 
@@ -44,10 +48,10 @@ error; the default test suite has no network dependency.
 **Depends on:** T-002
 
 Implement `strommodell download --year 2024 --source energy-charts`. Fetch the
-official `public_power` JSON endpoint, write its immutable raw response and
-metadata into a caller-selectable data directory, and record the request URL
-and digest. Add a separately marked network test only; ordinary tests use a
-local HTTP-free fake or fixture.
+official `public_power` JSON endpoint, pass the response through the T-002
+import boundary, and write the same raw filename and metadata shape as the
+checked-in snapshot. Add a separately marked network test only; ordinary tests
+use a local HTTP-free fake or fixture.
 
 **Public behavior test:** invoke the command against a fixture-backed download
 transport and assert the documented raw filename and metadata fields.
