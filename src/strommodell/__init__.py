@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from .download import download_reference_json
+from .report import write_report
 from .runner import run_scenarios
 
 if TYPE_CHECKING:
@@ -31,7 +32,8 @@ def main(
     run = subcommands.add_parser("run", help="run one or more model scenarios")
     run.add_argument("config", type=Path)
     run.add_argument("--output", required=True, type=Path)
-    subcommands.add_parser("report", help="create a scenario report")
+    report = subcommands.add_parser("report", help="create a scenario report")
+    report.add_argument("results_dir", type=Path)
     options = parser.parse_args(args)
     if options.command == "download":
         try:
@@ -50,3 +52,9 @@ def main(
         except (OSError, TypeError, ValueError) as exc:
             parser.error(str(exc))
         print(f"Wrote {manifest_path}")
+    elif options.command == "report":
+        try:
+            report_path = write_report(options.results_dir)
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error(str(exc))
+        print(f"Wrote {report_path}")

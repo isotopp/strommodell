@@ -87,6 +87,10 @@ def _result_document(result: ScenarioResult, config: ScenarioConfig) -> dict[str
             "wind_offshore_gw": scenario.wind_offshore_gw,
             "battery_power_gw": scenario.battery_power_gw,
             "battery_duration_hours": scenario.battery_duration_hours,
+            "annual_demand_twh": scenario.annual_demand_twh,
+            "initial_soc_gwh": scenario.initial_soc_gwh,
+            "charge_efficiency": scenario.charge_efficiency,
+            "discharge_efficiency": scenario.discharge_efficiency,
         },
         "data": _data_document(config),
         "metrics": {
