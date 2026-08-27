@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from .download import download_reference_json
+from .runner import run_scenarios
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -27,7 +28,9 @@ def main(
     download.add_argument("--year", required=True, type=int)
     download.add_argument("--source", required=True, choices=("energy-charts",))
     download.add_argument("--output", default=Path("data/raw"), type=Path)
-    subcommands.add_parser("run", help="run one or more model scenarios")
+    run = subcommands.add_parser("run", help="run one or more model scenarios")
+    run.add_argument("config", type=Path)
+    run.add_argument("--output", required=True, type=Path)
     subcommands.add_parser("report", help="create a scenario report")
     options = parser.parse_args(args)
     if options.command == "download":
@@ -38,6 +41,12 @@ def main(
                 options.output,
                 fetcher=fetcher,
             )
-        except (OSError, ValueError) as exc:
+        except (OSError, TypeError, ValueError) as exc:
             parser.error(str(exc))
         print(f"Wrote {result.raw_path} and {result.metadata_path}")
+    elif options.command == "run":
+        try:
+            manifest_path = run_scenarios(options.config, options.output)
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error(str(exc))
+        print(f"Wrote {manifest_path}")

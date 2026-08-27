@@ -1,0 +1,29 @@
+year: 2024
+source: energy-charts
+power_path: ../data/raw/energy-charts-public-power-de-2024.json
+capacity_path: ../data/raw/energy-charts-installed-power-de.json
+scenarios:
+  - name: "0-iststand-2024"
+    pv_gw: 99.3
+    wind_onshore_gw: 63.53
+    wind_offshore_gw: 9.215
+    battery_power_gw: 12.67
+    battery_duration_hours: 1.4719810576
+  - name: "A-knapp"
+    pv_gw: 300
+    wind_onshore_gw: 250
+    wind_offshore_gw: 70
+    battery_power_gw: 50
+    battery_duration_hours: 4
+  - name: "B-referenz"
+    pv_gw: 400
+    wind_onshore_gw: 300
+    wind_offshore_gw: 80
+    battery_power_gw: 100
+    battery_duration_hours: 4
+  - name: "C-viel-ueberschuss"
+    pv_gw: 500
+    wind_onshore_gw: 350
+    wind_offshore_gw: 100
+    battery_power_gw: 150
+    battery_duration_hours: 4
